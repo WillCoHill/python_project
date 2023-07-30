@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MyGUI {
+ method show_url()
+ method on_closing()
+}
+abstract AbstractCollection
+class TKinter
+
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+AbstractCollection <|- AbstractList
+
+class ArrayList {
+Object[] elementData
+size()
+}
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+@enduml
