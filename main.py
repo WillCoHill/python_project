@@ -67,6 +67,7 @@ class MyGUI:
 
         self.input_textbox = tk.Text(self.root, height=1, width=65, font=('Arial', 16))
         self.input_textbox.insert(tk.END, "URL goes here")
+        self.input_textbox.bind("<FocusIn>", self.click)
         self.input_textbox.pack(padx=10, pady=10)
 
         self.output_textbox = tk.Text(self.root, height=1, width=65)
@@ -132,6 +133,9 @@ class MyGUI:
     def on_closing(self):
         if tk.messagebox.askyesno(title="Quit?", message="Are you really trying to quit?"):
             self.root.destroy()
+
+    def click(self, *args):
+        self.input_textbox.delete('1.0', END)
 
     def connect(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

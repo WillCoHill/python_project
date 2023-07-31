@@ -1,28 +1,32 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-class MyGUI {
- method show_url()
- method on_closing()
-}
-abstract AbstractCollection
-class TKinter
+participant PythonSocket as "Python Socket"
+participant ProgramOnPort1234 as "Program on Port 1234"
 
+activate PythonSocket
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+PythonSocket -> PythonSocket: Generate Random Number (1 to 8)
 
-AbstractCollection <|- AbstractList
+PythonSocket -> ProgramOnPort1234: Send Random Number
 
-class ArrayList {
-Object[] elementData
-size()
-}
+activate ProgramOnPort1234
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+ProgramOnPort1234 -> ProgramOnPort1234: Receive Random Number
+
+ProgramOnPort1234 -> PythonSocket: Acknowledge Received
+
+deactivate ProgramOnPort1234
+
+ProgramOnPort1234 -> ProgramOnPort1234: Reconnect and Request Data Again using reconnect()
+
+PythonSocket -> ProgramOnPort1234: Send Random Number
+
+activate ProgramOnPort1234
+
+ProgramOnPort1234 -> ProgramOnPort1234: Receive Random Number
+
+ProgramOnPort1234 -> PythonSocket: Acknowledge Received
+
+deactivate ProgramOnPort1234
 
 @enduml
